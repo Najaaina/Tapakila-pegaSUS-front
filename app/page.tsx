@@ -125,7 +125,7 @@ export default function Home() {
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
             Catégories
           </h2>
-          <CategoryGrid />
+          <CategoryGrid/>
         </div>
       </div>
     </>
