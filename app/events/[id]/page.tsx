@@ -1,27 +1,42 @@
-import Navbar from '@/components/NavBar';
-import Image from 'next/image';
-import Link from 'next/link';
-import { events } from '@/data/events';
-import { CalendarIcon, MapPinIcon, TicketIcon, UserIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import { notFound } from 'next/navigation';
+import Navbar from "@/components/NavBar";
+import Image from "next/image";
+import Link from "next/link";
+import { events } from "@/data/events";
+import {
+  CalendarIcon,
+  MapPinIcon,
+  TicketIcon,
+  UserIcon,
+  PhoneIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/outline";
+import { notFound } from "next/navigation";
 
 export default function EventDetail({ params }: { params: { id: string } }) {
-  const event = events.find(e => e.id === params.id);
-  
+  const event = events.find((e) => e.id === params.id);
+
   if (!event) notFound();
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Navbar />
-      
+    <>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-4">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="inline-flex items-center px-3 py-1 bg-white dark:bg-gray-800 rounded-full shadow-sm hover:shadow-md transition-all duration-300 text-blue-600 dark:text-blue-400 hover:text-blue-700 mb-4"
           >
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <svg
+              className="w-4 h-4 mr-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
             </svg>
             Retour
           </Link>
@@ -36,7 +51,9 @@ export default function EventDetail({ params }: { params: { id: string } }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <span className="text-blue-600 dark:text-blue-400 font-semibold">{event.category}</span>
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                  {event.category}
+                </span>
               </div>
             </div>
 
@@ -46,11 +63,17 @@ export default function EventDetail({ params }: { params: { id: string } }) {
               <div className="border-b border-gray-100 dark:border-gray-700 pb-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h1>
-                    <p className="text-base text-gray-600 dark:text-gray-300">Par {event.artist}</p>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                      {event.title}
+                    </h1>
+                    <p className="text-base text-gray-600 dark:text-gray-300">
+                      Par {event.artist}
+                    </p>
                   </div>
                   <div className="bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 rounded-lg">
-                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">{event.price}€</span>
+                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                      {event.price}€
+                    </span>
                   </div>
                 </div>
               </div>
@@ -60,32 +83,48 @@ export default function EventDetail({ params }: { params: { id: string } }) {
                 <div className="flex items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                   <CalendarIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <div className="ml-3">
-                    <p className="font-medium text-gray-900 dark:text-white">{event.date}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{event.startTime} - {event.endTime}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">
+                      {event.date}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {event.startTime} - {event.endTime}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                   <MapPinIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <div className="ml-3">
-                    <p className="font-medium text-gray-900 dark:text-white">Lieu</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{event.location}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">
+                      Lieu
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {event.location}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Description */}
               <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl mt-4">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">À propos de l'événement</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{event.shortDescription}</p>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  À propos de l'événement
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {event.shortDescription}
+                </p>
               </div>
 
               {/* Billets */}
               <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-xl mt-4">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Billets disponibles</h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">{event.availableTickets} places</p>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                      Billets disponibles
+                    </h3>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                      {event.availableTickets} places
+                    </p>
                   </div>
                   <div className="bg-white dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300">
                     Max {event.maxPerPerson} par personne
@@ -114,6 +153,6 @@ export default function EventDetail({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }
