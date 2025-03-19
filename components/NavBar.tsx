@@ -42,7 +42,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/" className="relative h-10 w-32 block">
               <Image
-                src="/Images/logo.jpg"
+                src={darkMode ? "/Images/iconTapakilaDark.png" : "/Images/iconTapakilaLight.png"}
                 alt="Logo"
                 fill
                 className="object-contain object-left"
