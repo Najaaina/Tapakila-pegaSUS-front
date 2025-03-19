@@ -1,7 +1,6 @@
 "use client";
 
 // Import necessary components and hooks
-import Navbar from "@/components/NavBar";
 import EventCard from "@/components/EventCard";
 import Pagination from "@/components/Pagination";
 import { events } from "@/data/events";
@@ -86,7 +85,7 @@ export default function AllEvents() {
           </div>
 
           {/* Filters and Search section */}
-          <div className="mb-6">
+          <div className="mb-6 flex flex-col justify-center items-center gap-3">
             <h2 className="text-lg font-semibold dark:text-white">
               Filtres et Recherche
             </h2>

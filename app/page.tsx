@@ -1,4 +1,3 @@
-import Navbar from "@/components/NavBar";
 import { Carousel } from "@/components/ui/Carousel";
 import CategoryGrid from "@/components/CategoryGrid";
 import { events } from "@/data/events";
