@@ -3,7 +3,7 @@ import Image from 'next/image'; // Importez le composant Image de Next.js
 import Link from 'next/link';
 
 export default function CategoryGrid() {
-  const categories = ["cinema", "sport", "concert", "theatre", "spectacle", "gala", "exposition", "conference", "other"];
+  const categories = ["cinema", "sport", "concert", "theatre", "exposition", "gala", "spectacle", "conference", "other"];
 
   return (
     <div className="container mx-auto p-4">
@@ -16,7 +16,7 @@ export default function CategoryGrid() {
                 src={`/Images/categories/${category}.jpg`}
                 alt={category}
                 fill
-                className="object-cover transition-all duration-300 group-hover:blur-sm"
+                className="object-cover transition-all duration-300 group-hover:scale-105"
               />
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
