@@ -1,5 +1,5 @@
 import { Carousel } from "@/components/ui/Carousel";
-import CategoryGrid from "@/components/CategoryGrid";
+import CategoryGrid from "@/components/features/CategoryGrid";
 import { events } from "@/data/events";
 import Link from "next/link";
 import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
