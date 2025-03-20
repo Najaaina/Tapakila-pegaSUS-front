@@ -26,5 +26,5 @@ export async function GET(req: Request) {
 
   const paginatedEvents = filteredEvents.slice((page - 1) * pageSize, page * pageSize);
 
-  return NextResponse.json({ events: paginatedEvents, total: filteredEvents.length });
+  return NextResponse.json(paginatedEvents);
 }
