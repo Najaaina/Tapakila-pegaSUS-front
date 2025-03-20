@@ -8,8 +8,17 @@ export async function GET(req: Request) {
   const date = searchParams.get('date');
   const location = searchParams.get('location');
   const category = searchParams.get('category');
+  const upcoming = searchParams.get('upcoming') === 'true';
+  const currentTimestamp = Math.floor(Date.now() / 1000);
 
   let filteredEvents = events;
+
+  if (upcoming) {
+    filteredEvents = filteredEvents.filter(event => 
+      event.eventDate >= currentTimestamp && 
+      event.status === 'published'
+    );
+  }
 
   if (date) {
     const timestamp = parseInt(date, 10);
