@@ -1,7 +1,7 @@
 "use client";
 
 // Import necessary components and hooks
-import EventCard from "@/components/features/EventCard";
+import EventCard from "@/components/features/EventCardRow";
 import Pagination from "@/components/ui/Pagination";
 import { events } from "@/data/events";
 import Link from "next/link";
