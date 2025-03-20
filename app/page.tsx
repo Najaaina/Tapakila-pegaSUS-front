@@ -1,7 +1,6 @@
 import { Carousel } from "@/components/ui/Carousel";
 import EventsSection from "@/components/features/EventsSection";
 import CategoryGrid from "@/components/features/CategoryGrid";
-import { events } from "@/data/events";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 

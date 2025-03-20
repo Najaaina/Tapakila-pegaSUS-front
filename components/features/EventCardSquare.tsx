@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { Event } from "@/types/index";
-import {formatDateTime, FormattedDateTime } from "@/utils/dateUtils";
-import {calculateTotalAvailableTickets} from "@/utils/ticketUtils";
-import { TicketType } from "@/types/index";
+import {formatDateTime, FormattedDateTime } from "@/lib/utils/dateUtils";
+import {calculateTotalAvailableTickets} from "@/lib/utils/ticketUtils";
 
 type EventCardSquareProps = {
   event: Event;
