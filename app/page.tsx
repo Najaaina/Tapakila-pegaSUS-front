@@ -17,7 +17,7 @@ export default async function Home() {
         <EventsSection events={events} />
 
         {/* Categories Section */}
-        <CategoryGrid />
+        <CategoryGrid events={events}/>
       </div>
     </>
   );

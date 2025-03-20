@@ -13,6 +13,8 @@ export type EventImage = {
 
 export type EventStatus = "published" | "draft" | "cancelled";
 
+export type Category = "cinema" | "sport" | "concert" | "theatre" | "exposition" | "gala" | "spectacle" | "conference" | "other";
+
 export type Event = {
     idEvent: string;
     title: string;
@@ -20,7 +22,7 @@ export type Event = {
     eventDate: Date;
     location: string;
     organizer: string;
-    category: string;
+    category: Category;
     status: EventStatus;
     image: EventImage;
     ticketTypes: TicketType[];

@@ -6,51 +6,19 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Event } from "@/types/index";
+import { filterUniqueEventsByCategory } from '@/lib/utils/eventUtils';
 
-
-type EventsCarousel = {
+type CarouselProps = {
   events: Event[];
 };
 
-// const images = [
-//   {
-//     src: "/Images/Carousel/1.jpg",
-//     title: "Événement Exclusive",
-//     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-//   },
-//   {
-//     src: "/Images/Carousel/2.jpg",
-//     title: "Concert Épique",
-//     description:
-//       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//   },
-//   {
-//     src: "/Images/Carousel/3.jpg",
-//     title: "Festival International",
-//     description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-//   },
-//   {
-//     src: "/Images/Carousel/4.jpg",
-//     title: "Spectacle Unique",
-//     description: "Duis aute irure dolor in reprehenderit in voluptate velit.",
-//   },
-// ];
-
-export function Carousel({ events } : EventsCarousel) {
+export function Carousel({ events }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 5000 }),
   ]);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  // Filtrer pour n'avoir qu'un seul événement par catégorie
-  const categories = new Map();
-  const filteredEvents = events.filter((event) => {
-    if (!categories.has(event.category)) {
-      categories.set(event.category, true);
-      return true;
-    }
-    return false;
-  });
+  const filteredEvents = filterUniqueEventsByCategory(events);
 
   React.useEffect(() => {
     if (!emblaApi) return;
@@ -80,6 +48,9 @@ export function Carousel({ events } : EventsCarousel) {
                     }}
                     quality={100}
                     priority={index === 0}
+                    onError={(e) => {
+                      e.currentTarget.src = "/Images/errorImg.jpg"
+                    }}
                   />
 
                   {/* Overlay de texte aligné à gauche */}

@@ -1,19 +1,15 @@
 // components/CategoryGrid.tsx
 import Image from "next/image"; // Importez le composant Image de Next.js
 import Link from "next/link";
+import { Event } from "@/types/index";
+import { getUniqueCategory } from "@/lib/utils/eventUtils";
 
-export default function CategoryGrid() {
-  const categories = [
-    "cinema",
-    "sport",
-    "concert",
-    "theatre",
-    "exposition",
-    "gala",
-    "spectacle",
-    "conference",
-    "other",
-  ];
+type CategoryGridProps = {
+  events: Event[];
+};
+
+export default function CategoryGrid({ events }: CategoryGridProps) {
+  const categories = getUniqueCategory(events);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
