@@ -11,7 +11,7 @@ export default async function Home() {
     <>
       <div className="pt-20">
         {/* Carousel Section */}
-        <Carousel />
+        <Carousel/>
 
         {/* Events Section */}
         <EventsSection events={events} />
