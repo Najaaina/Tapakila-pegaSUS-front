@@ -5,11 +5,14 @@ import { Event } from "@/types/index";
 import { getUniqueCategory } from "@/lib/utils/eventUtils";
 
 type CategoryGridProps = {
-  events: Event[];
+  data:{
+    events: Event[],
+    total: number
+  };
 };
 
-export default function CategoryGrid({ events }: CategoryGridProps) {
-  const categories = getUniqueCategory(events);
+export default function CategoryGrid({ data }: CategoryGridProps) {
+  const categories = getUniqueCategory(data.events);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -29,6 +32,7 @@ export default function CategoryGrid({ events }: CategoryGridProps) {
                     src={`/Images/categories/${category}.jpg`}
                     alt={category}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-all duration-300 group-hover:scale-105"
                   />
                 </div>

@@ -9,16 +9,19 @@ import { Event } from "@/types/index";
 import { filterUniqueEventsByCategory } from '@/lib/utils/eventUtils';
 
 type CarouselProps = {
-  events: Event[];
+  data:{
+    events: Event[],
+    total: number
+  };
 };
 
-export function Carousel({ events }: CarouselProps) {
+export function Carousel({ data }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 5000 }),
   ]);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const filteredEvents = filterUniqueEventsByCategory(events);
+  const filteredEvents = filterUniqueEventsByCategory(data.events);
 
   React.useEffect(() => {
     if (!emblaApi) return;
