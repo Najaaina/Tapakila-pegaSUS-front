@@ -12,6 +12,7 @@ export async function GET(req: Request) {
   const currentTimestamp = Math.floor(Date.now() / 1000);
 
   let filteredEvents = events;
+  const totalEvents = events.length;
 
   if (upcoming) {
     filteredEvents = filteredEvents.filter(event => 
@@ -35,5 +36,8 @@ export async function GET(req: Request) {
 
   const paginatedEvents = filteredEvents.slice((page - 1) * pageSize, page * pageSize);
 
-  return NextResponse.json(paginatedEvents);
+  const response = NextResponse.json(paginatedEvents);
+  response.headers.set("X-Total-Count", totalEvents.toString());
+
+  return response;
 }

@@ -14,8 +14,11 @@ export async function getUpcomingEvents(page: number = 1, pageSize: number = 10)
         }
 
         const data = await res.json();
-        return data;
+        const total = res.headers.get("X-Total-Count");
+
+        return { events: data, total: Number(total) };
     } catch (error) {
         console.error("Error in getUpcomingEvents:", error);
+        return { events: [], total: 0 };
     }
 }
