@@ -4,7 +4,7 @@ import { CalendarIcon, ClockIcon, MapPinIcon } from '@heroicons/react/20/solid';
 
 // Define the Event interface to type the event prop
 interface Event {
-  id: string;
+  id: number;
   title: string;
   artist: string;
   date: string;
