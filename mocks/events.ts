@@ -93,11 +93,11 @@ export const events = [
         "idEvent": `550e8400-e29b-41d4-a716-4466554400${12 + i}`,
         "title": `Événement ${i + 4}`,
         "description": `Description de l'événement ${i + 4}`,
-        "eventDate": 1735689600 + i * 86400,
+        "eventDate": 1743926400 + i * 86400,
         "location": "Paris, France",
         "organizer": `Organisateur ${i + 4}`,
         "category": ["cinema", "sport", "concert", "theatre", "exposition", "gala", "spectacle", "conference", "other"][i % 9],
-        "status": ["draft", "published", "cancel"][i % 3],
+        "status": "published",
         "image": {
             "imageId": `550e8400-e29b-41d4-a716-4466554400${13 + i}`,
             "url": `https://picsum.photos/seed/event_${i + 4}/600/400`
