@@ -1,6 +1,7 @@
 import { Event } from '@/types';
 import { Category } from '@/types';
 
+// get one event per categories
 export function filterUniqueEventsByCategory(events: Event[]): Event[] {
     const categories = new Map();
     return events.filter((event) => {
@@ -12,6 +13,7 @@ export function filterUniqueEventsByCategory(events: Event[]): Event[] {
     });
 }
 
+// get all categories
 export function getUniqueCategory(events : Event[]) : Category[] {
     return [...new Set(events.map(event => event.category))];
 }

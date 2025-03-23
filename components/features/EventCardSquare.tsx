@@ -14,7 +14,7 @@ export default function EventCard({ event }: EventCardSquareProps) {
 
   return (
     <Link
-      href={`/events/${event.idEvent}`}
+      href={`/event/${event.idEvent}`}
       className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
     >
       {/* Image Section */}

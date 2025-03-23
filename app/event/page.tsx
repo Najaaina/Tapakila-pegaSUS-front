@@ -53,7 +53,7 @@ export default function AllEvents() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     params.set("page", "1");
-    router.push(`/events?${params.toString()}`);
+    router.push(`/event?${params.toString()}`);
   }, [searchTerm, selectedDate, selectedLocation, selectedCategory, router]);
 
   // Calculate the events to display based on pagination
@@ -85,7 +85,7 @@ export default function AllEvents() {
       <div className="max-w-5xl mx-auto px-4">
         <PageHeader
           title="Tous les événements"
-          count={filteredEvents.length}
+          count={filteredEvents.length} // event.total
           backUrl="/"
         />
 

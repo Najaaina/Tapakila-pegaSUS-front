@@ -26,7 +26,7 @@ export default function CategoryGrid({ data }: CategoryGridProps) {
               key={id}
               className="relative group cursor-pointer overflow-hidden rounded-lg"
             >
-              <Link href="/events">
+              <Link href="/event">
                 <div className="w-full h-64 relative">
                   <Image
                     src={`/Images/categories/${category}.jpg`}

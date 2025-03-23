@@ -15,8 +15,8 @@ export default function Navbar() {
   // Main navigation links
   const mainLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Events', href: '/events' },
-    { name: 'My Bookings', href: '/bookings' }
+    { name: 'Events', href: '/event' },
+    { name: 'My Bookings', href: '/booking' }
   ]
 
   // User-specific links based on login state

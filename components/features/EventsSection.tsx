@@ -20,23 +20,21 @@ export default function EventsSection({ initialData }: EventsSectionProps) {
     Math.ceil(initialData.total / 10)
   );
   const pageSize = 10;
-  
+
   useEffect(() => {
     async function fetchEvents() {
       try {
-        // if (currentPage > 1) {
-          const data = await getUpcomingEvents(currentPage, pageSize);
-          setEvents(data.events);
-          setTotalPages(Math.ceil(data.total / pageSize));
-        // }
+        const data = await getUpcomingEvents(currentPage, pageSize);
+        setEvents(data.events);
+        setTotalPages(Math.ceil(data.total / pageSize));
       } catch (error) {
         console.error("Error fetching events:", error);
       }
     }
-    
+
     fetchEvents();
   }, [currentPage]);
-  
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       {/* Header for Events */}
@@ -68,7 +66,7 @@ export default function EventsSection({ initialData }: EventsSectionProps) {
       {/* Button to View More Events */}
       <div className="mt-8 flex justify-center">
         <Link
-          href="/events"
+          href="/event"
           className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow-md"
         >
           Voir tous les événements
