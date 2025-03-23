@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { events } from "@/data/events";
 import {
   CalendarIcon,
@@ -20,26 +19,6 @@ export default function EventDetail({ params }: { params: { id: string } }) {
     <>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-4">
-          <Link
-            href="/"
-            className="inline-flex items-center px-3 py-1 bg-white dark:bg-gray-800 rounded-full shadow-sm hover:shadow-md transition-all duration-300 text-blue-600 dark:text-blue-400 hover:text-blue-700 mb-4"
-          >
-            <svg
-              className="w-4 h-4 mr-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
-            Retour
-          </Link>
-
           <div className="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden h-[calc(100vh-180px)]">
             {/* Image à gauche */}
             <div className="md:w-1/2 h-full relative group">

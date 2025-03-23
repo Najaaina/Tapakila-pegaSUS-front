@@ -86,7 +86,6 @@ export default function AllEvents() {
         <PageHeader
           title="Tous les événements"
           count={filteredEvents.length} // event.total
-          backUrl="/"
         />
 
         <FilterBar
