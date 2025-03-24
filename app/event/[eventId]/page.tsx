@@ -10,8 +10,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { notFound } from "next/navigation";
 
-export default function EventDetail({ params }: { params: { id: string } }) {
-  const event = events.find((e) => e.id === params.id);
+export default function EventDetail({ params }: { params: { eventId: string } }) {
+  const event = events.find((e) => e.id === params.eventId);
 
   if (!event) notFound();
 
