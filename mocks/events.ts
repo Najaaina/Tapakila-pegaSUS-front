@@ -94,7 +94,7 @@ export const events = [
         "title": `Événement ${i + 4}`,
         "description": `Description de l'événement ${i + 4}`,
         "eventDate": 1743926400 + i * 86400,
-        "location": "Paris, France",
+        "location": ["Lyon, France", "New York, USA", "San Francisco, USA", "Paris, France", "L'oriental Ivandry"][i % 5],
         "organizer": `Organisateur ${i + 4}`,
         "category": ["cinema", "sport", "concert", "theatre", "exposition", "gala", "spectacle", "conference", "other"][i % 9],
         "status": "published",
