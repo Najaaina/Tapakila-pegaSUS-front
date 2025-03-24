@@ -1,6 +1,6 @@
 // /components/features/EventList.tsx
 import EventCardRow from "@/components/features/EventCardRow";
-import { Event } from "@/types/testIndex";
+import { Event } from "@/types/index";
 
 interface EventListProps {
   events: Event[];
@@ -19,37 +19,11 @@ export default function EventList({ events }: EventListProps) {
 
       {/* List of events */}
       <div className="space-y-1">
-        {events.map((event) => {
-          const {
-            id,
-            title,
-            artist,
-            date,
-            startTime,
-            endTime,
-            location,
-            image,
-            maxPerPerson,
-            price,
-            availableTickets,
-            ticketType,
-          } = event;
+        {events.map((event, index) => {
           return (
             <EventCardRow
-              key={id}
-              event={{
-                id,
-                title,
-                artist,
-                date,
-                startTime,
-                endTime,
-                location,
-                image,
-                maxPerPerson,
-                price,
-                ticketType: ticketType || "",
-              }}
+              key={index}
+              event={event}
             />
           );
         })}

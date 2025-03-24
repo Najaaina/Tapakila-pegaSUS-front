@@ -27,3 +27,9 @@ export type Event = {
     image: EventImage;
     ticketTypes: TicketType[];
 };
+
+export type Filters = {
+    selectedDate: string;
+    selectedLocation: string;
+    selectedCategory: string;
+}
