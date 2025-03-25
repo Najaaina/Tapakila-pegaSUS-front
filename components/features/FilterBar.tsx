@@ -56,14 +56,6 @@ export default function FilterBar({
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         ></CategoryDropdown>
-
-        {/* <input
-          type="text"
-          placeholder="Rechercher..."
-          className="border rounded-md p-2 mt-4 md:mt-0"
-          value={selectedFilters.search}
-          onChange={(e) => onChange.search(e.target.value)}
-        /> */}
       </div>
     </div>
   );
