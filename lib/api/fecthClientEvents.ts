@@ -15,8 +15,7 @@ export const fetchEvents = async (filters : Filters, page : number, pageSize : n
 
     if (!res.ok) throw new Error("Erreur lors de la récupération des événements");
 
-    const events = await res.json();
-    const total = Number(res.headers.get("X-Total-Count")) || 0;
+    const data = await res.json();
 
-    return { events, total };
+    return { events: data.data, total : data.total };
 };

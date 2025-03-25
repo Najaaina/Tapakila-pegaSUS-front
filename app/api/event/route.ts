@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import {events} from '@/mocks/events';
+import { events } from '@/mocks/events';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -8,18 +8,9 @@ export async function GET(req: Request) {
   const date = searchParams.get('date');
   const location = searchParams.get('location');
   const category = searchParams.get('category');
-  const upcoming = searchParams.get('upcoming') === 'true';
-  const currentTimestamp = Math.floor(Date.now() / 1000);
+  const title = searchParams.get('title')?.toLowerCase();
 
   let filteredEvents = events;
-  const totalEvents = events.length;
-
-  if (upcoming) {
-    filteredEvents = filteredEvents.filter(event => 
-      event.eventDate >= currentTimestamp && 
-      event.status === 'published'
-    );
-  }
 
   if (date) {
     const timestamp = parseInt(date, 10);
@@ -34,10 +25,12 @@ export async function GET(req: Request) {
     filteredEvents = filteredEvents.filter(event => event.category.toLowerCase() === category.toLowerCase());
   }
 
+  if (title) {
+    filteredEvents = filteredEvents.filter(event => event.title.toLowerCase().includes(title));
+  }
+
+  const total = filteredEvents.length;
   const paginatedEvents = filteredEvents.slice((page - 1) * pageSize, page * pageSize);
 
-  const response = NextResponse.json(paginatedEvents);
-  response.headers.set("X-Total-Count", totalEvents.toString());
-
-  return response;
+  return NextResponse.json({ data: paginatedEvents, total: total });
 }
