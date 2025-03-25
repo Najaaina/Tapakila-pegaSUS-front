@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DatePicker from "../ui/DatePicker";
 import LocationSearch from "./LocationSearch";
 import CategoryDropdown from "./CategoryDropdown";
+import { SearchBar } from "./SearchBar";
 
 interface FilterBarProps {
   uniqueCategories: string[];
@@ -13,6 +14,7 @@ interface FilterBarProps {
       selectedDate: string;
       selectedLocation: string;
       selectedCategory: string;
+      searchTerm: string;
     }>
   >;
 }
@@ -25,6 +27,7 @@ export default function FilterBar({
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     onFilterChange((prev) => ({
@@ -32,8 +35,9 @@ export default function FilterBar({
       selectedDate,
       selectedLocation,
       selectedCategory,
+      searchTerm,
     }));
-  }, [selectedDate, selectedLocation, selectedCategory, onFilterChange]);
+  }, [selectedDate, selectedLocation, selectedCategory, onFilterChange, searchTerm]);
 
   return (
     <div className="mb-6 flex flex-col justify-center items-center gap-3">
@@ -56,6 +60,8 @@ export default function FilterBar({
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         ></CategoryDropdown>
+
+        <SearchBar onSearch={setSearchTerm}></SearchBar>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ export const fetchEvents = async (filters : Filters, page : number, pageSize : n
     if (filters.selectedDate) params.append("date", filters.selectedDate);
     if (filters.selectedLocation) params.append("location", filters.selectedLocation);
     if (filters.selectedCategory) params.append("category", filters.selectedCategory);
+    if (filters.searchTerm) params.append("title", filters.searchTerm)
     params.append("page", page.toString());
     params.append("pageSize", pageSize.toString());
 

@@ -15,6 +15,7 @@ const AllEvents = () => {
     selectedDate: "",
     selectedLocation: "",
     selectedCategory: "",
+    searchTerm: "",
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +39,7 @@ const AllEvents = () => {
         uniqueLocations={getUniqueLocations(data?.events || [])}
         onFilterChange={setFilters}
       />
-      <SearchBar onSearch={setSearchTerm} /> 
+      {/* <SearchBar onSearch={setSearchTerm} />  */}
       {isLoading ? (
         <EventListSkeleton count={pageSize} />
       ) : (

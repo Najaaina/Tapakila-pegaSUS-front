@@ -32,4 +32,5 @@ export type Filters = {
     selectedDate: string;
     selectedLocation: string;
     selectedCategory: string;
+    searchTerm: string;
 }
