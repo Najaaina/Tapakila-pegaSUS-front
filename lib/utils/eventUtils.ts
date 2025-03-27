@@ -12,13 +12,3 @@ export function filterUniqueEventsByCategory(events: Event[]): Event[] {
         return false;
     });
 }
-
-// get all categories
-export function getUniqueCategory(events : Event[]) : Category[] {
-    return [...new Set(events.map(event => event.category))];
-}
-
-// get all locations
-export function getUniqueLocations(events : Event[]) : string[] {
-    return [...new Set(events.map(event => event.location))];
-}

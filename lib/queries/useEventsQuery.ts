@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { fetchEvents } from "@/lib/api/fecthClientEvents";
+import { fetchEvents } from "@/lib/api/fetchClientEvents";
 import { Filters } from "@/types";
 
 const useEventsQuery = (filters : Filters, page : number, pageSize :number) => {

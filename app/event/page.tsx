@@ -5,10 +5,11 @@ import FilterBar from "@/components/features/FilterBar";
 import EventList from "@/components/features/EventList";
 import { Pagination } from "@/components/ui/PaginationfutureEvent";
 import EventListSkeleton from "@/components/ui/EventListSkeleton";
-import useEventsQuery from "@/lib/queries/useEventsQuery";
-import { getUniqueCategory, getUniqueLocations } from "@/lib/utils/eventUtils";
 import { useEventSearch } from "@/lib/utils/useEventSearch";
-import { SearchBar } from "@/components/features/SearchBar";
+import useEventsQuery from "@/lib/queries/useEventsQuery";
+import useCategoriesQuery from "@/lib/queries/useCategoriesQuery";
+import useLocationsQuery from "@/lib/queries/useLocationsQuery";
+import { FilterBarSkeleton } from "@/components/ui/FilterBarSkeleton";
 
 const AllEvents = () => {
   const [filters, setFilters] = useState({
@@ -26,20 +27,38 @@ const AllEvents = () => {
     currentPage,
     pageSize
   );
-  const { filteredEvents } = useEventSearch(data?.events, searchTerm);
+  const {
+    locations,
+    error: locationsError,
+    isLoading: isLoadingLocations,
+  } = useLocationsQuery();
+  const {
+    categories,
+    error: categoriesError,
+    isLoading: isLoadingCategories,
+  } = useCategoriesQuery();
 
+  const { filteredEvents } = useEventSearch(data?.events, searchTerm);
+  console.log(categories)
+  console.log(locations)
+
+  if (locationsError) return <p>Erreur lors du chargement des lieux des événements</p>
+  if (categoriesError) return <p>Erreur lors du chargement des lieux des événements</p>
   if (error) return <p>Erreur lors du chargement des événements.</p>;
 
   return (
     <div>
-      {/* le count à modifier en evenements dispo avec filtrage ou un truc du genre */}
       <PageHeader count={data?.total || 0} />
-      <FilterBar
-        uniqueCategories={getUniqueCategory(data?.events || [])}
-        uniqueLocations={getUniqueLocations(data?.events || [])}
-        onFilterChange={setFilters}
-      />
-      {/* <SearchBar onSearch={setSearchTerm} />  */}
+      {isLoadingCategories && isLoadingLocations ? (
+        <FilterBarSkeleton />
+      ) : (
+        <FilterBar
+          uniqueCategories={categories}
+          uniqueLocations={locations}
+          onFilterChange={setFilters}
+        />
+      )}
+
       {isLoading ? (
         <EventListSkeleton count={pageSize} />
       ) : (

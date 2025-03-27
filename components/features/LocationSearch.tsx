@@ -40,7 +40,7 @@ export default function LocationSearch({
       {query && (
         <div className="absolute z-10 w-full bg-white border rounded shadow-lg">
           {suggestions && suggestions.length > 0 ? (
-            suggestions.map((location: string, index: number) => (
+            suggestions?.map((location: string, index: number) => (
               <div
                 key={index}
                 className="p-2 hover:bg-gray-100 cursor-pointer"
