@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ClearButton from "../ui/ClearButton";
 
 type LocationSearchProps = {
@@ -11,6 +11,8 @@ export default function LocationSearch({
   setSelectedLocation,
 }: LocationSearchProps) {
   const [query, setQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const suggestions = query
     ? uniqueLocations.filter((location) =>
@@ -18,35 +20,60 @@ export default function LocationSearch({
       )
     : [];
 
-  const changeLocation = (location : string) => {
+  const changeLocation = (location: string) => {
     setQuery(location);
     setSelectedLocation(location);
-  }
+    setShowSuggestions(false); // Ferme le dropdown après sélection
+  };
 
   const handleClear = () => {
     setQuery("");
+    setShowSuggestions(false); // Ferme le dropdown lors du reset
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setShowSuggestions(true); // Ouvre le dropdown lors de la saisie
+  };
+
+  // Ferme le dropdown quand on clique ailleurs
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (query === "") {
-      setSelectedLocation(""); 
+      setSelectedLocation("");
     }
   }, [query, setSelectedLocation]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <input
         type="text"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={handleInputChange}
+        onFocus={() => setShowSuggestions(true)} // Ouvre le dropdown au focus
         placeholder="Rechercher un lieu"
         className="w-full p-2 pr-8 border rounded"
       />
       {query.length > 0 && <ClearButton onClick={handleClear} />}
-      {query && (
-        <div className="absolute z-10 w-full bg-white border rounded shadow-lg">
-          {suggestions && suggestions.length > 0 ? (
-            suggestions?.map((location: string, index: number) => (
+      {showSuggestions && query && (
+        <div className="absolute z-10 w-full bg-white border rounded shadow-lg mt-1 max-h-60 overflow-y-auto">
+          {suggestions.length > 0 ? (
+            suggestions.map((location: string, index: number) => (
               <div
                 key={index}
                 className="p-2 hover:bg-gray-100 cursor-pointer"
