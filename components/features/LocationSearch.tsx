@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ClearButton from "../ui/ClearButton";
 
 type LocationSearchProps = {
   uniqueLocations: string[];
@@ -22,6 +23,10 @@ export default function LocationSearch({
     setSelectedLocation(location);
   }
 
+  const handleClear = () => {
+    setQuery("");
+  };
+
   useEffect(() => {
     if (query === "") {
       setSelectedLocation(""); 
@@ -35,8 +40,9 @@ export default function LocationSearch({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Rechercher un lieu"
-        className="w-full p-2 border rounded"
+        className="w-full p-2 pr-8 border rounded"
       />
+      {query.length > 0 && <ClearButton onClick={handleClear} />}
       {query && (
         <div className="absolute z-10 w-full bg-white border rounded shadow-lg">
           {suggestions && suggestions.length > 0 ? (
