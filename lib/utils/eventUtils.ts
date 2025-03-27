@@ -1,5 +1,4 @@
 import { Event } from '@/types';
-import { Category } from '@/types';
 
 // get one event per categories
 export function filterUniqueEventsByCategory(events: Event[]): Event[] {
