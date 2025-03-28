@@ -1,4 +1,3 @@
-// components/ui/Carousel.tsx
 "use client";
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
@@ -17,7 +16,7 @@ type CarouselProps = {
 
 export function Carousel({ data }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000 }),
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
   ]);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
@@ -32,57 +31,41 @@ export function Carousel({ data }: CarouselProps) {
   }, [emblaApi]);
 
   return (
-    <div className="max-w-6xl mx-auto p-4 relative group bg-background rounded-2xl">
-      <div className="embla overflow-hidden rounded-xl" ref={emblaRef}>
-        <div className="embla__container flex">
+    <div className="w-full h-screen max-h-[80vh] relative bg-black">
+      <div className="embla h-full overflow-hidden" ref={emblaRef}>
+        <div className="embla__container flex h-full">
           {filteredEvents.map((event, index) => (
-            <div className="embla__slide flex-[0_0_100%] min-w-0" key={index}>
-              <div className="relative h-[500px]">
-                {/* Image avec overlay */}
-                <div className="relative h-full w-full">
-                  <Image
-                    src={event.image.url}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover rounded-lg mx-auto"
-                    style={{
-                      maxWidth: "95%",
-                      objectPosition: "center",
-                    }}
-                    quality={100}
-                    priority={index === 0}
-                    onError={(e) => {
-                      e.currentTarget.src = "/Images/errorImg.jpg"
-                    }}
-                  />
+            <div className="embla__slide flex-[0_0_100%] min-w-0 h-full relative" key={index}>
+              {/* Image de fond plein écran */}
+              <div className="absolute inset-0">
+                <Image
+                  src={event.image.url}
+                  alt={`Slide ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  quality={100}
+                  priority={index === 0}
+                  onError={(e) => {
+                    e.currentTarget.src = "/Images/errorImg.jpg"
+                  }}
+                />
+                {/* Overlay sombre */}
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
 
-                  {/* Overlay de texte aligné à gauche */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end items-start p-8">
-                    <div className="text-white ml-8 space-y-4 max-w-2xl">
-                      <h2 className="text-4xl font-bold">{event.title}</h2>
-                      <p className="text-xl max-w-lg">{event.description}</p>
-                      <Button className="text-lg px-6 py-3 bg-primary/90 hover:bg-primary">
-                        Acheter des tickets
-                      </Button>
-                    </div>
+              {/* Contenu */}
+              <div className="relative h-full flex flex-col justify-center px-16 max-w-7xl mx-auto">
+                <div className="text-white space-y-6 z-10">
+                  <h2 className="text-5xl font-bold drop-shadow-lg">{event.title}</h2>
+                  <p className="text-xl max-w-2xl drop-shadow-md">{event.description}</p>
+                  <div className="flex gap-4">
+                    <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 rounded-full">
+                      Acheter des tickets
+                    </Button>
+                    <Button variant="outline" className="text-lg px-8 py-6 bg-white/10 hover:bg-white/20 rounded-full">
+                      Plus d'infos
+                    </Button>
                   </div>
-                </div>
-
-                {/* Pagination */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                  {filteredEvents.map((_, i) => (
-                    <Button
-                      key={i}
-                      variant="ghost"
-                      size="sm"
-                      className={`h-3 w-3 rounded-full p-0 transition-all ${
-                        i === selectedIndex
-                          ? "bg-primary w-6"
-                          : "bg-muted opacity-50"
-                      }`}
-                      onClick={() => emblaApi?.scrollTo(i)}
-                    />
-                  ))}
                 </div>
               </div>
             </div>
@@ -90,23 +73,34 @@ export function Carousel({ data }: CarouselProps) {
         </div>
       </div>
 
+      {/* Pagination en bas */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {filteredEvents.map((_, i) => (
+          <button
+            key={i}
+            className={`h-2 w-8 rounded-full transition-all ${
+              i === selectedIndex
+                ? "bg-primary"
+                : "bg-gray-400/50 hover:bg-gray-400"
+            }`}
+            onClick={() => emblaApi?.scrollTo(i)}
+          />
+        ))}
+      </div>
+
       {/* Navigation */}
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 hidden group-hover:block"
+      <button
+        className="absolute left-8 top-1/2 -translate-y-1/2 text-white hover:bg-black/15 rounded-full p-4 z-10 transition-all hidden md:block"
         onClick={() => emblaApi?.scrollPrev()}
       >
         ←
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 hidden group-hover:block"
+      </button>
+      <button
+        className="absolute right-8 top-1/2 -translate-y-1/2 text-white hover:bg-black/15 rounded-full p-4 z-10 transition-all hidden md:block"
         onClick={() => emblaApi?.scrollNext()}
       >
         →
-      </Button>
+      </button>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="pt-20">
+      <div className="pt-15">
         {/* Carousel Section */}
         <Carousel data={data}/>
 

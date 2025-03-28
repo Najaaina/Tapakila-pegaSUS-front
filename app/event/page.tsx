@@ -17,7 +17,6 @@ const AllEvents = () => {
     selectedCategory: "",
     searchTerm: "",
   });
-  // const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
@@ -37,37 +36,48 @@ const AllEvents = () => {
     isLoading: isLoadingCategories,
   } = useCategoriesQuery();
 
-  if (locationsError) return <p>Erreur lors du chargement des lieux des événements</p>
-  if (categoriesError) return <p>Erreur lors du chargement des lieux des événements</p>
+  if (locationsError)
+    return <p>Erreur lors du chargement des lieux des événements</p>;
+  if (categoriesError) return <p>Erreur lors du chargement des catégories</p>;
   if (error) return <p>Erreur lors du chargement des événements.</p>;
 
   useEffect(() => {
-    setCurrentPage(1)
-  }, [filters])
+    setCurrentPage(1);
+  }, [filters]);
 
   return (
-    <div>
-      <PageHeader count={data?.total || 0} />
-      {isLoadingCategories && isLoadingLocations ? (
-        <FilterBarSkeleton />
-      ) : (
-        <FilterBar
-          uniqueCategories={categories}
-          uniqueLocations={locations}
-          onFilterChange={setFilters}
-        />
-      )}
+    <div className="mx-auto min-h-screen max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="pt-10">
+        <PageHeader count={data?.total || 0} />
+      </div>
 
-      {isLoading ? (
-        <EventListSkeleton count={pageSize} />
-      ) : (
-        <EventList events={data?.events} />
-      )}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={total}
-        onPageChange={setCurrentPage}
-      />
+      <div className="mb-8">
+        {isLoadingCategories || isLoadingLocations ? (
+          <FilterBarSkeleton />
+        ) : (
+          <FilterBar
+            uniqueCategories={categories}
+            uniqueLocations={locations}
+            onFilterChange={setFilters}
+          />
+        )}
+      </div>
+
+      <div className="mb-8">
+        {isLoading ? (
+          <EventListSkeleton count={pageSize} />
+        ) : (
+          <EventList events={data?.events} />
+        )}
+      </div>
+
+      <div className="flex justify-center">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={total}
+          onPageChange={setCurrentPage}
+        />
+      </div>
     </div>
   );
 };

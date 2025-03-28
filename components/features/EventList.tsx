@@ -1,4 +1,3 @@
-// /components/features/EventList.tsx
 import EventCardRow from "@/components/features/EventCardRow";
 import { Event } from "@/types/index";
 
@@ -8,26 +7,21 @@ interface EventListProps {
 
 export default function EventList({ events }: EventListProps) {
   return (
-    <>
-      {/* Column headers for event list */}
-      <div className="hidden md:grid grid-cols-4 gap-4 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase border-b pb-2">
-        <div>Événement</div>
-        <div>Date</div>
-        <div>Heure</div>
-        <div>Lieu</div>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+      <div className="hidden md:grid grid-cols-12 gap-4 p-5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">
+        <div className="col-span-5">Événement</div>
+        <div className="col-span-2 text-center">Date</div>
+        <div className="col-span-2 text-center">Heure</div>
+        <div className="col-span-2 text-center">Lieu</div>
+        <div className="col-span-1 text-right">Billets</div>
       </div>
 
-      {/* List of events */}
-      <div className="space-y-1">
-        {events.map((event, index) => {
-          return (
-            <EventCardRow
-              key={index}
-              event={event}
-            />
-          );
-        })}
+      {/* Liste des événements */}
+      <div className="space-y-3 p-2">
+        {events?.map((event) => (
+          <EventCardRow key={event.idEvent} event={event} />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
