@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { events } from "@/data/events";
+import { use } from "react";
 import {
   CalendarIcon,
   MapPinIcon,
@@ -9,21 +11,31 @@ import {
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
 import { notFound } from "next/navigation";
+import useEventByIdQuery from "@/lib/queries/useEventByIdQuery";
+import EventDetailSkeleton from "@/components/ui/skeleton/EventDetailSkeleton";
+import { formatDateTime, FormattedDateTime } from "@/lib/utils/dateUtils";
 
-export default function EventDetail({ params }: { params: { eventId: string } }) {
-  const event = events.find((e) => e.id === params.eventId);
+export default function EventDetail({ params }: { params: Promise<{ eventId: string }> }) {
+  const { eventId } = use(params);
+  const {event, error, isLoading} = useEventByIdQuery(eventId);
 
-  if (!event) notFound();
+  if (error) return <p>{`Erreur lors du chargement de l'evenement avec l'id ${eventId}`}</p>;
+  if (!event) return <p>Aucun événement trouvé.</p>; // ✅ Ajout de cette vérification
+
+    const { date, time }: FormattedDateTime = formatDateTime(event.eventDate);
 
   return (
     <>
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-4">
+        {isLoading ? (
+          <EventDetailSkeleton/>
+        ) : (
+          <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden h-[calc(100vh-180px)]">
             {/* Image à gauche */}
             <div className="md:w-1/2 h-full relative group">
               <img
-                src={event.image}
+                src={event.image.url}
                 alt={event.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -45,12 +57,12 @@ export default function EventDetail({ params }: { params: { eventId: string } })
                       {event.title}
                     </h1>
                     <p className="text-base text-gray-600 dark:text-gray-300">
-                      Par {event.artist}
+                      Par {event.organizer}
                     </p>
                   </div>
                   <div className="bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 rounded-lg">
                     <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                      {event.price}€
+                      {event.title}€
                     </span>
                   </div>
                 </div>
@@ -62,10 +74,10 @@ export default function EventDetail({ params }: { params: { eventId: string } })
                   <CalendarIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <div className="ml-3">
                     <p className="font-medium text-gray-900 dark:text-white">
-                      {event.date}
+                      {date}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">
-                      {event.startTime} - {event.endTime}
+                      {time}
                     </p>
                   </div>
                 </div>
@@ -89,7 +101,7 @@ export default function EventDetail({ params }: { params: { eventId: string } })
                   À propos de l'événement
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {event.shortDescription}
+                  {event.description}
                 </p>
               </div>
 
@@ -101,11 +113,13 @@ export default function EventDetail({ params }: { params: { eventId: string } })
                       Billets disponibles
                     </h3>
                     <p className="text-sm text-blue-600 dark:text-blue-400">
-                      {event.availableTickets} places
+                      {/* {event.availableTickets} places */}
+                      {event.titre} places
                     </p>
                   </div>
                   <div className="bg-white dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300">
-                    Max {event.maxPerPerson} par personne
+                    {/* Max {event.maxPerPerson} par personne */}
+                    Max {event.title} par personne
                   </div>
                 </div>
               </div>
@@ -130,6 +144,7 @@ export default function EventDetail({ params }: { params: { eventId: string } })
             </div>
           </div>
         </div>
+        )}
       </div>
     </>
   );

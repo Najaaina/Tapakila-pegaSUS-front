@@ -4,11 +4,11 @@ import PageHeader from "@/components/ui/PageHeader";
 import FilterBar from "@/components/features/FilterBar";
 import EventList from "@/components/features/EventList";
 import { Pagination } from "@/components/ui/PaginationfutureEvent";
-import EventListSkeleton from "@/components/ui/EventListSkeleton";
+import EventListSkeleton from "@/components/ui/skeleton/EventListSkeleton";
 import useEventsQuery from "@/lib/queries/useEventsQuery";
 import useCategoriesQuery from "@/lib/queries/useCategoriesQuery";
 import useLocationsQuery from "@/lib/queries/useLocationsQuery";
-import { FilterBarSkeleton } from "@/components/ui/FilterBarSkeleton";
+import { FilterBarSkeleton } from "@/components/ui/skeleton/FilterBarSkeleton";
 
 const AllEvents = () => {
   const [filters, setFilters] = useState({

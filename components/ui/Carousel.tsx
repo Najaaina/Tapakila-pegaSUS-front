@@ -2,7 +2,7 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import { Event } from "@/types/index";
 import { filterUniqueEventsByCategory } from '@/lib/utils/eventUtils';

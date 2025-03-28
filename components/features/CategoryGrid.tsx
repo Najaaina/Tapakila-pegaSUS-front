@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Event } from "@/types/index";
 import useCategoriesQuery from "@/lib/queries/useCategoriesQuery";
-import CategoryGridSkeleton from "../ui/CategoryGridSkeleton";
+import CategoryGridSkeleton from "../ui/skeleton/CategoryGridSkeleton";
 
 type CategoryGridProps = {
   data: {
