@@ -5,7 +5,7 @@ import EventsSection from "@/components/features/EventsSection";
 
 // Main component for the Home page
 export default async function Home() {
-  const data = await getUpcomingEvents();
+  const data = await getUpcomingEvents(1, 9);
 
   return (
     <>
