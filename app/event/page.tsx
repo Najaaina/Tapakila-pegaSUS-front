@@ -18,7 +18,7 @@ const AllEvents = () => {
     searchTerm: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 6;
 
   const { data, error, isLoading, total } = useEventsQuery(
     filters,
