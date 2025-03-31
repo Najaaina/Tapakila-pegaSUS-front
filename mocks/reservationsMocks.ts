@@ -170,5 +170,265 @@ export const reservations: Reservation[] = [
                 }
             }
         ]
+    },
+    {
+        idReservation: "4",
+        reservationDate: new Date("2025-01-20T16:45:00"),
+        status: "confirmed",
+        event: {
+            idEvent: "event-3",
+            title: "Pièce de Théâtre",
+            description: "Une pièce de théâtre classique",
+            eventDate: new Date("2025-03-05T18:30:00"),
+            location: "Théâtre National, Marseille",
+            organizer: "Compagnie Théâtrale Nationale",
+            category: "conference",
+            status: "published",
+            image: {
+                imageId: "3",
+                url: "https://picsum.photos/seed/event_88/600/400",
+                // altText: "Affiche Pièce de Théâtre"
+            },
+            ticketTypes: [
+                {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                },
+                {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            ]
+        },
+        reservationTicket: [
+            {
+                idReservationTicket: "3-1",
+                quantity: 2,
+                ticketType: {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                }
+            },
+            {
+                idReservationTicket: "3-2",
+                quantity: 3,
+                ticketType: {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            }
+        ]
+    },
+    {
+        idReservation: "5",
+        reservationDate: new Date("2025-01-20T16:45:00"),
+        status: "confirmed",
+        event: {
+            idEvent: "event-3",
+            title: "Pièce de Théâtre",
+            description: "Une pièce de théâtre classique",
+            eventDate: new Date("2025-03-05T18:30:00"),
+            location: "Théâtre National, Marseille",
+            organizer: "Compagnie Théâtrale Nationale",
+            category: "conference",
+            status: "published",
+            image: {
+                imageId: "3",
+                url: "https://picsum.photos/seed/event_88/600/400",
+                // altText: "Affiche Pièce de Théâtre"
+            },
+            ticketTypes: [
+                {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                },
+                {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            ]
+        },
+        reservationTicket: [
+            {
+                idReservationTicket: "3-1",
+                quantity: 2,
+                ticketType: {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                }
+            },
+            {
+                idReservationTicket: "3-2",
+                quantity: 3,
+                ticketType: {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            }
+        ]
+    },
+    {
+        idReservation: "6",
+        reservationDate: new Date("2025-01-20T16:45:00"),
+        status: "confirmed",
+        event: {
+            idEvent: "event-3",
+            title: "Pièce de Théâtre",
+            description: "Une pièce de théâtre classique",
+            eventDate: new Date("2025-03-05T18:30:00"),
+            location: "Théâtre National, Marseille",
+            organizer: "Compagnie Théâtrale Nationale",
+            category: "conference",
+            status: "published",
+            image: {
+                imageId: "3",
+                url: "https://picsum.photos/seed/event_88/600/400",
+                // altText: "Affiche Pièce de Théâtre"
+            },
+            ticketTypes: [
+                {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                },
+                {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            ]
+        },
+        reservationTicket: [
+            {
+                idReservationTicket: "3-1",
+                quantity: 2,
+                ticketType: {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                }
+            },
+            {
+                idReservationTicket: "3-2",
+                quantity: 3,
+                ticketType: {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            }
+        ]
+    },
+    {
+        idReservation: "7",
+        reservationDate: new Date("2025-01-20T16:45:00"),
+        status: "confirmed",
+        event: {
+            idEvent: "event-3",
+            title: "Pièce de Théâtre",
+            description: "Une pièce de théâtre classique",
+            eventDate: new Date("2025-03-05T18:30:00"),
+            location: "Théâtre National, Marseille",
+            organizer: "Compagnie Théâtrale Nationale",
+            category: "conference",
+            status: "published",
+            image: {
+                imageId: "3",
+                url: "https://picsum.photos/seed/event_88/600/400",
+                // altText: "Affiche Pièce de Théâtre"
+            },
+            ticketTypes: [
+                {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                },
+                {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            ]
+        },
+        reservationTicket: [
+            {
+                idReservationTicket: "3-1",
+                quantity: 2,
+                ticketType: {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                }
+            },
+            {
+                idReservationTicket: "3-2",
+                quantity: 3,
+                ticketType: {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            }
+        ]
+    },
+    {
+        idReservation: "8",
+        reservationDate: new Date("2025-01-20T16:45:00"),
+        status: "confirmed",
+        event: {
+            idEvent: "event-3",
+            title: "Pièce de Théâtre",
+            description: "Une pièce de théâtre classique",
+            eventDate: new Date("2025-03-05T18:30:00"),
+            location: "Théâtre National, Marseille",
+            organizer: "Compagnie Théâtrale Nationale",
+            category: "conference",
+            status: "published",
+            image: {
+                imageId: "3",
+                url: "https://picsum.photos/seed/event_88/600/400",
+                // altText: "Affiche Pièce de Théâtre"
+            },
+            ticketTypes: [
+                {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                },
+                {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            ]
+        },
+        reservationTicket: [
+            {
+                idReservationTicket: "3-1",
+                quantity: 2,
+                ticketType: {
+                    ticketName: "Orchestre", price: 45, disponibility: 87,
+                    idTicket: "87",
+                    buyingLimit: 3
+                }
+            },
+            {
+                idReservationTicket: "3-2",
+                quantity: 3,
+                ticketType: {
+                    ticketName: "Balcon", price: 30, disponibility: 55,
+                    idTicket: "55",
+                    buyingLimit: 4
+                }
+            }
+        ]
     }
 ];

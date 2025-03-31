@@ -1,9 +1,6 @@
 import { Reservation } from "@/types";
-import ReservationHeader from "../ui/ReservationHeader";
-import ReservationTabs from "../ui/ReservationTabs";
-import ReservationCard from "./ReservationCard";
-import ReservationDetail from "./ReservationDetail";
 import ReservationTitles from "../ui/ReservationTitles";
+import ReservationCard from "./ReservationCard";
 
 interface ReservationDashboardProps {
   reservations: Reservation[];
@@ -17,9 +14,9 @@ export default function ReservationDashboard({
   setSelectedReservation,
 }: ReservationDashboardProps) {
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow overflow-hidden">
       <ReservationTitles />
-      <div>
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {reservations.map((reservation) => (
           <ReservationCard
             key={reservation.idReservation}
