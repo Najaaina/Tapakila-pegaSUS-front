@@ -34,3 +34,19 @@ export type Filters = {
     selectedCategory: string;
     searchTerm: string;
 }
+
+export type Status = "confirmed" | "cancelled"
+
+export type ReservationTicket = {
+    idReservationTicket : string;
+    quantity: number;
+    ticketType: TicketType;
+}
+
+export type Reservation = {
+    idReservation: string,
+    reservationDate: Date,
+    status: Status,
+    event: Event,
+    reservationTicket: ReservationTicket[];
+}
