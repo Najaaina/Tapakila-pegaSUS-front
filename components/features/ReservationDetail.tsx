@@ -2,6 +2,7 @@
 
 import { FormattedDateTime, formatDateTime } from "@/lib/utils/dateUtils";
 import { Reservation } from "@/types";
+import ReservationDetailHeader from "../ui/ReservationDetailHeader";
 
 interface ReservationDetailProps {
   reservation: Reservation;
@@ -24,23 +25,7 @@ export default function ReservationDetail({
 
       <div className="space-y-6">
         {/* Event Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="w-full sm:w-20 h-20 overflow-hidden rounded-lg">
-            <img
-              src={reservation.event.image.url}
-              alt={reservation.event.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-              {reservation.event.title}
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              {reservation.event.category}
-            </p>
-          </div>
-        </div>
+        <ReservationDetailHeader urlImage={reservation.event.image.url} eventTitle={reservation.event.title} eventCategory={reservation.event.category}/>
 
         {/* Grid Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
