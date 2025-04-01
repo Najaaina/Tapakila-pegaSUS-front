@@ -1,0 +1,68 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import DatePicker from "../ui/DatePicker";
+import LocationSearch from "./LocationSearch";
+import CategoryDropdown from "./CategoryDropdown";
+import { SearchBar } from "./SearchBar";
+
+interface FilterBarProps {
+  uniqueCategories: string[];
+  uniqueLocations: string[];
+  onFilterChange: React.Dispatch<
+    React.SetStateAction<{
+      selectedDate: string;
+      selectedLocation: string;
+      selectedCategory: string;
+      searchTerm: string;
+    }>
+  >;
+}
+
+export default function FilterBar({
+  uniqueCategories,
+  uniqueLocations,
+  onFilterChange,
+}: FilterBarProps) {
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  useEffect(() => {
+    onFilterChange((prev) => ({
+      ...prev,
+      selectedDate,
+      selectedLocation,
+      selectedCategory,
+      searchTerm,
+    }));
+  }, [selectedDate, selectedLocation, selectedCategory, onFilterChange, searchTerm]);
+
+  return (
+    <div className="mb-6 flex flex-col justify-center items-center gap-3">
+      <h2 className="text-lg font-semibold dark:text-white">
+        Filtres et Recherche
+      </h2>
+      <div className="flex flex-col md:flex-row md:gap-4">
+        <DatePicker
+          selectedDate={selectedDate}
+          onChangeDate={setSelectedDate}
+        ></DatePicker>
+
+        <LocationSearch
+          uniqueLocations={uniqueLocations}
+          setSelectedLocation={setSelectedLocation}
+        ></LocationSearch>
+
+        <CategoryDropdown
+          uniquecategories={uniqueCategories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        ></CategoryDropdown>
+
+        <SearchBar onSearch={setSearchTerm}></SearchBar>
+      </div>
+    </div>
+  );
+}
