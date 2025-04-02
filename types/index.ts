@@ -25,7 +25,7 @@ export type Event = {
     category: Category;
     status: EventStatus;
     image: EventImage;
-    ticketTypes: TicketType[];
+    ticketType: TicketType[];
 };
 
 export type Filters = {

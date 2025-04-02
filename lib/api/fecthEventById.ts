@@ -1,3 +1,5 @@
+import snakeToCamel from "../utils/snakeCaseToCamelCaseUtils";
+
 export const fetchEventById = async (id_event: string) => {
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
     const url = `${API_BASE_URL}/event/${id_event}`;
@@ -6,5 +8,6 @@ export const fetchEventById = async (id_event: string) => {
 
     if (!res.ok) throw new Error("Erreur lors de la récupération de l'événement");
 
-    return await res.json();
+    const data = await res.json();
+    return snakeToCamel(data);
 };

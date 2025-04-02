@@ -1,4 +1,4 @@
-function snakeToCamel<T>(obj: any): T {
+export default function snakeToCamel<T>(obj: any): T {
     if (typeof obj !== 'object' || obj === null) {
         return obj as T;
     }

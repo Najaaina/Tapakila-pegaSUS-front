@@ -3,14 +3,10 @@ import { TicketType } from "@/types";
 
 interface TicketTypeTableProps {
   ticketTypes: TicketType[];
-  // selectedTickets: Record<string, number>;
-  // onTicketChange: (type: string, quantity: number) => void;
 }
 
 export const TicketTypeTable: React.FC<TicketTypeTableProps> = ({
   ticketTypes,
-  // selectedTickets,
-  // onTicketChange,
 }) => {
   return (
     <div className="mt-4">
