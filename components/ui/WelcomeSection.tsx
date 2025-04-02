@@ -4,12 +4,14 @@ interface WelcomeSectionProps {
   welcomeMessage: string;
   reminderMessage: string;
   buttonMessage: string;
+  redirection: string;
 }
 
 export default function WelcomeSection({
   welcomeMessage,
   reminderMessage,
   buttonMessage,
+  redirection,
 }: WelcomeSectionProps) {
   return (
     <div className="w-full md:w-1/2 bg-gray-800 dark:bg-white p-8 flex flex-col justify-center text-white dark:text-gray-800">
@@ -22,7 +24,7 @@ export default function WelcomeSection({
 
       <p className="mb-6">{reminderMessage}</p>
 
-      <Link href="/auth/login">
+      <Link href={`/auth/${redirection}`}>
         <div className="inline-block px-6 py-2 border-2 border-white dark:border-gray-800 text-white dark:text-gray-800 font-medium rounded hover:bg-white hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-white transition-colors">
           {buttonMessage}
         </div>

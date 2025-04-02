@@ -1,16 +1,19 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react";
 import FormFieldsSignup from "@/components/features/FormFieldsSignup";
+import FormFieldsLogin from "../features/FormFieldsLogin";
 
-interface SignupFormProps {
+interface AuthFormProps {
   bigTitle: string;
   buttonMessage: string;
+  formType: 'login' | 'signup';
 }
 
-export default function SignupForm({
+export default function AuthForm({
   bigTitle,
   buttonMessage,
-}: SignupFormProps) {
+  formType,
+}: AuthFormProps) {
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -40,8 +43,10 @@ export default function SignupForm({
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <FormFieldsSignup formData={formData} handleChange={handleChange} />
-
+        {formType === 'login' 
+      ? <FormFieldsLogin formData={formData} handleChange={handleChange}/> 
+      : <FormFieldsSignup formData={formData} handleChange={handleChange} />
+    }
           <div>
             <button
               type="submit"
