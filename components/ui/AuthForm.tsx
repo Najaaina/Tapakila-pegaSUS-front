@@ -2,11 +2,13 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import FormFieldsSignup from "@/components/features/FormFieldsSignup";
 import FormFieldsLogin from "../features/FormFieldsLogin";
+import { useRouter } from "next/navigation";
+import { login, register, storeToken } from "@/lib/api/auth";
 
 interface AuthFormProps {
   bigTitle: string;
   buttonMessage: string;
-  formType: 'login' | 'signup';
+  formType: "login" | "signup";
 }
 
 export default function AuthForm({
@@ -20,6 +22,8 @@ export default function AuthForm({
     motDePasse: "",
     confirmationMotDePasse: "",
   });
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,12 +33,37 @@ export default function AuthForm({
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Modifications dans AuthForm
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Validation et traitement du formulaire
-    // console.log("Données du formulaire:", formData);
-  };
+    setError("");
 
+    try {
+      if (formType === "login") {
+        const token = await login(formData.email, formData.motDePasse);
+        storeToken(token);
+        router.push("/dashboard");
+      } else {
+        if (formData.motDePasse !== formData.confirmationMotDePasse) {
+          throw new Error("Les mots de passe ne correspondent pas");
+        }
+        if (formData.motDePasse.length < 4) {
+          throw new Error("Le mot de passe doit faire au moins 6 caractères");
+        }
+
+        await register({
+          name: formData.nom,
+          email: formData.email,
+          password: formData.motDePasse,
+        });
+        const token = await login(formData.email, formData.motDePasse);
+        storeToken(token);
+        router.push('/booking');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+    }
+  };
   return (
     <div className="w-full md:w-1/2 p-8 flex flex-col justify-center bg-white dark:bg-gray-800">
       <div className="max-w-md mx-auto w-full">
@@ -42,11 +71,16 @@ export default function AuthForm({
           {bigTitle}
         </h2>
 
+        {error && (
+          <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
-        {formType === 'login' 
-      ? <FormFieldsLogin formData={formData} handleChange={handleChange}/> 
-      : <FormFieldsSignup formData={formData} handleChange={handleChange} />
-    }
+          {formType === "login" ? (
+            <FormFieldsLogin formData={formData} handleChange={handleChange} />
+          ) : (
+            <FormFieldsSignup formData={formData} handleChange={handleChange} />
+          )}
           <div>
             <button
               type="submit"
