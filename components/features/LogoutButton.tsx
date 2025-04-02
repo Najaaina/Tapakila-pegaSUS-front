@@ -1,16 +1,21 @@
 "use client";
 
 import { LogOut } from "lucide-react";
+import { removeToken } from "@/lib/api/auth";
+import { useRouter } from "next/navigation";
 
 interface LogoutButtonProps {
   className?: string;
-  onLogout?: () => void;
 }
 
-export default function LogoutButton({
-  className = "",
-  onLogout = () => console.log("Déconnexion"),
-}: LogoutButtonProps) {
+export default function LogoutButton({ className = "" }: LogoutButtonProps) {
+  const router = useRouter();
+
+  const onLogout = () => {
+    removeToken();
+    router.push("/");
+  };
+
   return (
     <button
       onClick={onLogout}

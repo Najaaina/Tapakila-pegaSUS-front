@@ -2,22 +2,18 @@ import { LogOut } from "lucide-react";
 import UserInfoCard from "@/components/ui/UserInfoCard";
 import LogoutButton from "@/components/features/LogoutButton";
 import ProfilePicture from "./ProfilePicture";
-
-type User = {
-  name: string;
-  email: string;
-  creation_date: string;
-};
+import { User } from "@/types";
 
 type ProfileInfoProps = {
   user: User;
-  className?: string; // Ajout d'une prop className optionnelle
+  className?: string;
 };
 
 export default function ProfileInfo({
   user,
   className = "",
 }: ProfileInfoProps) {
+
   return (
     <div className={`flex flex-col md:flex-row gap-8 pt-2 ${className}`}>
       {/* Colonne de gauche - Profil */}
