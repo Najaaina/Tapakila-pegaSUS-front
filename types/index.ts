@@ -2,7 +2,7 @@ export type TicketType = {
     idTicket: string;
     ticketName: string;
     price: number;
-    disponibility: number;
+    disponibility: boolean;
     buyingLimit: number;
 };
 
@@ -24,8 +24,8 @@ export type Event = {
     organizer: string;
     category: Category;
     status: EventStatus;
-    image: EventImage;
     ticketType: TicketType[];
+    image: EventImage;
 };
 
 export type Filters = {

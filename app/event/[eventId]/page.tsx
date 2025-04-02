@@ -48,7 +48,7 @@ export default function EventDetail({
             <div className="p-6">
               <EventAbout date={date} time={time} location={event.location} />
               <EventDescription description={event.description} />
-              <TicketTypeTable ticketTypes={event.ticketType} />
+              <TicketTypeTable idEvent={event.idEvent} ticketTypes={event.ticketType} />
               <ReservationButton />
             </div>
           </div>
