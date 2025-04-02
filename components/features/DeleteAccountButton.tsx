@@ -1,62 +1,59 @@
 "use client";
+
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
-type DeleteAccountButtonProps = {
-	className?: string;
-	onConfirm?: () => void;
-};
+interface DeleteAccountButtonProps {
+  className?: string;
+  onDeleteAccount?: () => void;
+}
 
 export default function DeleteAccountButton({
-	                                            className = "",
-	                                            onConfirm,
-                                            }: DeleteAccountButtonProps) {
-	const [isConfirming, setIsConfirming] = useState(false);
+  className = "",
+  onDeleteAccount = () => console.log("Suppression compte"),
+}: DeleteAccountButtonProps) {
+  const [isConfirming, setIsConfirming] = useState(false);
 
-	const handleClick = () => {
-		if (!isConfirming) {
-			setIsConfirming(true);
-			return;
-		}
-		onConfirm?.();
-		setIsConfirming(false);
-	};
+  const handleClick = () => {
+    if (isConfirming) {
+      onDeleteAccount();
+      setIsConfirming(false);
+    } else {
+      setIsConfirming(true);
+    }
+  };
 
-	return (
-		<div className={`w-full max-w-md mx-auto ${className}`}>
-			<button
-				onClick={handleClick}
-				className={`
-          w-full flex items-center justify-center gap-2 
-          py-3 px-4 rounded-lg transition-all duration-300
+  // Annuler la confirmation si l'utilisateur clique ailleurs
+  const handleCancel = () => {
+    setIsConfirming(false);
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={handleClick}
+        className={`flex items-center gap-2 p-2 rounded-lg w-full sm:w-auto transition-colors
           ${
-					isConfirming
-						? "bg-red-700 hover:bg-red-800"
-						: "bg-red-500 hover:bg-red-600"
-				}
-          text-white font-medium
-          shadow-md hover:shadow-lg
-          transform hover:scale-[1.02] active:scale-95
-          focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50
-        `}
-			>
-				<Trash2 size={20} className="flex-shrink-0" />
-				<span className="whitespace-nowrap">
-          {isConfirming ? "Confirmer la suppression ?" : "Supprimer le compte"}
+            isConfirming
+              ? "bg-red-500 text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
+              : "text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 border border-transparent hover:border-red-200 dark:hover:border-red-800"
+          }
+          ${className}`}
+      >
+        <Trash2 size={16} className="flex-shrink-0" />
+        <span className="whitespace-nowrap">
+          {isConfirming ? "Confirmer la suppression" : "Supprimer le compte"}
         </span>
-			</button>
+      </button>
 
-			{isConfirming && (
-				<button
-					onClick={() => setIsConfirming(false)}
-					className="
-            w-full mt-2 text-sm text-gray-500 hover:text-gray-700
-            transition-colors duration-200
-          "
-				>
-					Annuler
-				</button>
-			)}
-		</div>
-	);
+      {isConfirming && (
+        <button
+          onClick={handleCancel}
+          className="text-xs text-gray-500 dark:text-gray-400 hover:underline mt-1 block w-full text-center"
+        >
+          Annuler
+        </button>
+      )}
+    </div>
+  );
 }
