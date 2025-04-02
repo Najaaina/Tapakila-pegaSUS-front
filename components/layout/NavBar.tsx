@@ -34,7 +34,7 @@ export default function Navbar() {
       ]
     : [
         { name: "Se connecter", href: "/auth/login" },
-        { name: "S'inscrire", href: "/auth/register" },
+        { name: "S'inscrire", href: "/auth/signup" },
       ];
 
   // Effect to toggle dark mode class on the document

@@ -1,6 +1,6 @@
 export const login = async (email: string, password: string) => {
     try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("https://tapakila-backend-gaqg.onrender.com/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const register = async (userData: {
     email: string;
     password: string;
 }) => {
-    const response = await fetch("http://localhost:3000/register", {
+    const response = await fetch("https://tapakila-backend-gaqg.onrender.com/register", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
