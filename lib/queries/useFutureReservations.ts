@@ -1,16 +1,16 @@
 import { Filters, Reservation } from "@/types";
 import useSWR from "swr";
-import { fetchFutureReservations } from "../api/fecthFutureReservation";
+import { fetchFutureOrPastReservations } from "../api/fecthFutureReservation";
 
 interface ReservationsResponse {
     data: Reservation[];
     total: number;
 }
 
-const useFutureReservations = (filters: Filters, page: number = 1, pageSize: number = 10) => {
-    const { data, error, isLoading, mutate } = useSWR<ReservationsResponse>(
-        ['/api/reservations/future', filters, page, pageSize],
-        () => fetchFutureReservations(filters, page, pageSize),
+const useFutureOrPastReservations = (filters: Filters, page: number = 1, pageSize: number = 10, time: string) => {
+    const { data, error, isLoading } = useSWR<ReservationsResponse>(
+        [`/api/reservations/${time}`, filters, page, pageSize],
+        () => fetchFutureOrPastReservations(filters, page, pageSize, time),
         {
             revalidateOnFocus: false,
             keepPreviousData: true
@@ -20,11 +20,9 @@ const useFutureReservations = (filters: Filters, page: number = 1, pageSize: num
     return {
         reservations: data?.data || [],
         total: data?.total || 0,
-        totalPages: Math.ceil((data?.total || 0) / pageSize),
         error,
-        isLoading,
-        mutate
+        isLoading
     };
 };
 
-export default useFutureReservations;
+export default useFutureOrPastReservations;

@@ -16,7 +16,7 @@ export default function ReservationCard({
     reservation.event.eventDate
   );
   const { date: reservationDate, time: reservationTime }: FormattedDateTime =
-    formatDateTime(reservation.reservationDate);
+    formatDateTime(reservation.reservedAt);
 
   return (
     <div
@@ -31,7 +31,7 @@ export default function ReservationCard({
       <div className="flex flex-col items-start space-y-2">
         <div className="w-full h-32 md:h-20 overflow-hidden rounded-lg relative">
           <img
-            src={reservation.event.image.url}
+            src={reservation.event.image?.url  || "/userPic.jpg"}
             alt={reservation.event.title}
             className="w-full h-full object-cover"
           />

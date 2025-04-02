@@ -2,10 +2,11 @@ import { Filters } from "@/types";
 import snakeToCamel from '../utils/snakeCaseToCamelCaseUtils';
 import { fetchWithAuth } from "./fecthWithAuth";
 
-export const fetchFutureReservations = async (
+export const fetchFutureOrPastReservations = async (
     filters: Filters,
     page: number = 1,
-    limit: number = 10
+    limit: number = 10,
+    time: string = "future"
 ) => {
     const params = new URLSearchParams();
 
@@ -20,7 +21,7 @@ export const fetchFutureReservations = async (
     params.append('limit', limit.toString());
 
     const response = await fetchWithAuth(
-        `${process.env.NEXT_PUBLIC_API_URL}/account/reservation/future?${params.toString()}`
+        `${process.env.NEXT_PUBLIC_API_URL}/account/reservation/${time}?${params.toString()}`
     );
 
     if (!response) {

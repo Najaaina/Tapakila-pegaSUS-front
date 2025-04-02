@@ -15,7 +15,7 @@ export default function ReservationDetail({
     reservation.event.eventDate
   );
   const { date: reservationDate, time: reservationTime }: FormattedDateTime =
-    formatDateTime(reservation.reservationDate);
+    formatDateTime(reservation.reservedAt);
 
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full border border-gray-200 dark:border-gray-700">
@@ -25,7 +25,17 @@ export default function ReservationDetail({
 
       <div className="space-y-6">
         {/* Event Header */}
-        <ReservationDetailHeader urlImage={reservation.event.image.url} eventTitle={reservation.event.title} eventCategory={reservation.event.category}/>
+        {reservation &&
+        reservation.event.image &&
+        reservation.event.image.url ? (
+          <ReservationDetailHeader
+            urlImage={reservation.event.image.url}
+            eventTitle={reservation.event.title}
+            eventCategory={reservation.event.category}
+          />
+        ) : (
+          <p>Aucune image disponible</p>
+        )}
 
         {/* Grid Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

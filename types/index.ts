@@ -49,8 +49,8 @@ export type ReservationTicket = {
 
 export type Reservation = {
     idReservation: string;
-    reservationDate: Date;
+    reservedAt: Date;
     status: "confirmed" | "cancelled";
     event: Event;
-    reservationTicket: ReservationTicket;
+    reservationTicket: ReservationTicket[];
 }
