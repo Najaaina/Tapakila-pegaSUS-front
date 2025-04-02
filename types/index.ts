@@ -2,7 +2,7 @@ export type TicketType = {
     idTicket: string;
     ticketName: string;
     price: number;
-    disponibility: boolean;
+    disponibility: number;
     buyingLimit: number;
 };
 
@@ -24,8 +24,8 @@ export type Event = {
     organizer: string;
     category: Category;
     status: EventStatus;
-    ticketType: TicketType[];
     image: EventImage;
+    ticketTypes: TicketType[];
 };
 
 export type Filters = {
@@ -35,18 +35,8 @@ export type Filters = {
     searchTerm: string;
 }
 
-export type Status = "confirmed" | "cancelled"
-
-export type ReservationTicket = {
-    idReservationTicket : string;
-    quantity: number;
-    ticketType: TicketType;
-}
-
-export type Reservation = {
-    idReservation: string,
-    reservationDate: Date,
-    status: Status,
-    event: Event,
-    reservationTicket: ReservationTicket[];
+export type User = {
+    name: string;
+    email: string;
+    accountCreationDate: Date;
 }

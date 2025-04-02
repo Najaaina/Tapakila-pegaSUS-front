@@ -1,24 +1,17 @@
-import { Carousel } from "@/components/ui/Carousel";
-import CategoryGrid from "@/components/features/CategoryGrid";
-import { getUpcomingEvents } from "@/lib/loaders/events";
-import EventsSection from "@/components/features/EventsSection";
+import ProfileInfo from "@/components/ui/ProfileInfo";
+import { ProfileHeader } from "@/components/ui/ProfileHeader";
 
-// Main component for the Home page
-export default async function Home() {
-  const data = await getUpcomingEvents(1, 9);
+export default function ProfilePage() {
+    const user = {
+        name: "Jean Dupont",
+        email: "jean.dupont@example.com",
+        creation_date: "2023-05-15T10:30:00Z"
+    };
 
-  return (
-    <>
-      <div className="pt-15">
-        {/* Carousel Section */}
-        <Carousel data={data}/>
-
-        {/* Events Section */}
-        <EventsSection initialData={data}/>
-
-        {/* Categories Section */}
-        {/* <CategoryGrid data={data}/> */}
-      </div>
-    </>
-  );
+    return (
+        <div className="container mx-auto px-4 py-8 pt-20 max-w-4xl">
+            <ProfileHeader title="Profile"/>
+            <ProfileInfo user={user} />
+        </div>
+    );
 }
