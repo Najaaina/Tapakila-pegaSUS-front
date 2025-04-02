@@ -5,30 +5,36 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MoonIcon, SunIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useThemeStore } from "@/store/themeStore";
+import { getToken } from '@/lib/api/auth';
 
 // Navbar component
 export default function Navbar() {
   // State management
-  const [isOpen, setIsOpen] = useState(false); // For dropdown menu
+  const [isOpen, setIsOpen] = useState(false);
   const { darkMode, toggleDarkMode } = useThemeStore(); // Use the Zustand store
-  const [loggedIn] = useState(false); // User login state
+
+  const token = getToken();
+  let loggedIn = false;
+  if(token) {
+    loggedIn = true;
+  }
 
   // Main navigation links
   const mainLinks = [
-    { name: "Home", href: "/" },
-    { name: "Events", href: "/event" },
-    { name: "My Bookings", href: "/booking" },
+    { name: "Acceuil", href: "/" },
+    { name: "Evenements", href: "/event" },
+    { name: "Mes reservations", href: "/booking" },
   ];
 
   // User-specific links based on login state
   const userLinks = loggedIn
     ? [
         { name: "Profile", href: "/profile" },
-        { name: "Logout", href: "/logout" },
+        // { name: "Deconnexion", href: "/logout" },
       ]
     : [
-        { name: "Login", href: "/auth/login" },
-        { name: "Sign Up", href: "/auth/register" },
+        { name: "Se connecter", href: "/auth/login" },
+        { name: "S'inscrire", href: "/auth/register" },
       ];
 
   // Effect to toggle dark mode class on the document

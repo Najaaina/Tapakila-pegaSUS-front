@@ -5,7 +5,6 @@ import ReservationDetail from "@/components/features/ReservationDetail";
 import ReservationHeader from "@/components/ui/ReservationHeader";
 import ReservationTabs from "@/components/ui/ReservationTabs";
 import React, { useEffect, useState } from "react";
-// import { reservations } from "@/mocks/reservationsMocks";
 import { Reservation } from "@/types";
 import AuthGuard from "@/components/guards/AuthGuard";
 import useFutureOrPastReservations from "@/lib/queries/useFutureReservations";

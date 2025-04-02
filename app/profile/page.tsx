@@ -8,7 +8,6 @@ import ProfileInfo from "@/components/ui/ProfileInfo";
 import { ProfileSkeleton } from "@/components/ui/ProfileSkeleton";
 
 export default function ProfilePage() {
-  const router = useRouter();
   const {
     data: user,
     error,
