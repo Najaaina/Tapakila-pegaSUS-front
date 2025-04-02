@@ -42,7 +42,7 @@ export default function AuthForm({
       if (formType === "login") {
         const token = await login(formData.email, formData.motDePasse);
         storeToken(token);
-        router.push("/dashboard");
+        router.push("/booking");
       } else {
         if (formData.motDePasse !== formData.confirmationMotDePasse) {
           throw new Error("Les mots de passe ne correspondent pas");
